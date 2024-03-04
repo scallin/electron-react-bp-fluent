@@ -1,40 +1,35 @@
+/* eslint-disable prettier/prettier */
+import * as React from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+import { PrimaryButton, Panel } from '@fluentui/react';
+import { useBoolean } from '@fluentui/react-hooks';
 import './App.css';
+import { initializeIcons } from '@fluentui/react/lib/Icons';
 
-function Hello() {
+initializeIcons();
+
+function Landing() {
+  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
+    useBoolean(false);
+
   return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
+    <div className="container ms-Grid" dir="ltr">
+      <h1>Electron React with Fluent</h1>
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
+          <PrimaryButton onClick={openPanel}>Click Me</PrimaryButton>
+        </div>
+        <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">Column 2</div>
       </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
+      <Panel
+        headerText="Sample panel"
+        isOpen={isOpen}
+        onDismiss={dismissPanel}
+        // You MUST provide this prop! Otherwise screen readers will just say "button" with no label.
+        closeButtonAriaLabel="Close"
+      >
+        <p>Content goes here.</p>
+      </Panel>
     </div>
   );
 }
@@ -43,7 +38,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
     </Router>
   );
