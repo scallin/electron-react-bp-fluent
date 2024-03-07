@@ -14,10 +14,11 @@ function Landing() {
     <div className="container ms-Grid" dir="ltr">
       <h1>Electron React with Fluent</h1>
       <div className="ms-Grid-row">
-        <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
-          <PrimaryButton onClick={openPanel}>Click Me</PrimaryButton>
+        <div className="ms-Grid-col ms-sm12 ms-md4">
+          <PrimaryButton onClick={openPanel}>Open Panel</PrimaryButton>
         </div>
-        <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">Column 2</div>
+        <div className="ms-Grid-col ms-sm12 ms-md4">Column 2</div>
+        <div className="ms-Grid-col ms-sm12 ms-md4">Column 3</div>
       </div>
       <Panel
         headerText="Sample panel"
